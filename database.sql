@@ -15,12 +15,29 @@
     WHERE "transactions_attempted" >= 9;
 
 --5. How do you get the username and account balance of the 3 users with the highest balances, sorted highest to lowest balance? NOTE: Research LIMIT
-    
+    SELECT "username", "account_balance" FROM "accounts"
+    ORDER BY "account_balance" DESC
+    LIMIT 3;
 
 --6. How do you get the username and account balance of the 3 users with the lowest balances, sorted lowest to highest balance?
+    SELECT "username", "account_balance" FROM "accounts"
+    ORDER BY "account_balance"
+    LIMIT 3;
+
 --7. How do you get all users with account balances that are more than $100?
+    SELECT * FROM "accounts"
+    WHERE "account_balance" > '100';
+
 --8. How do you add a new account?
+    INSERT INTO "accounts" ("username")
+    VALUE ("luke");
+    -- the user_id is automatically generated and the username is the only value that has NOT NULL, and therefore the only 
+    -- value not required, so the only thing needed to create a new account is the username
+
 --9. The bank is losing money in Miami and Phoenix and needs to unload low transaction customers: How do you delete users that reside in miami OR phoenix and have completed fewer than 5 transactions.
+    SELECT * FROM "accounts"
+    WHERE "transactions_completed" < 5
+    AND ("city"='chicago' OR "city"='phoenix');
 
 --## Stretch Goal Questions (word problems)
 --1. Anthony moved to Santa Fe.
