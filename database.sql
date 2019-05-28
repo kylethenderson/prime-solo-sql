@@ -30,9 +30,9 @@
 
 --8. How do you add a new account?
     INSERT INTO "accounts" ("username")
-    VALUE ("luke");
+    VALUES ("luke");
     -- the user_id is automatically generated and the username is the only value that has NOT NULL, and therefore the only 
-    -- value not required, so the only thing needed to create a new account is the username
+    -- value required to create a new account
 
 --9. The bank is losing money in Miami and Phoenix and needs to unload low transaction customers: How do you delete users that reside in miami OR phoenix and have completed fewer than 5 transactions.
     SELECT * FROM "accounts"
@@ -41,7 +41,7 @@
 
 --## Stretch Goal Questions (word problems)
 --1. Anthony moved to Santa Fe.
-    UPDATE "accounts"
+    UPDATE "accounts" SET "city"='Santa Fe'
     WHERE "username" = 'anthony';
 
 --2. Grace closed her account.
@@ -49,7 +49,7 @@
     WHERE "username" = 'grace';
     
 --3. Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
-    UPDATE "accounts" SET "account_balance" = "account_balance" -20000
+    UPDATE "accounts" SET "account_balance" = "account_balance"-20000
     WHERE "username" = 'travis';
 
 --4. The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
