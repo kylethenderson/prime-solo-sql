@@ -6,7 +6,7 @@
     SELECT * FROM "accounts" WHERE "username" ILIKE '%a%';
 
 --3. The bank is giving a new customer bonus! How do you update all records with an account balance of 0.00 and a transactions_attempted of 0? Give them a new account balance of 10.00.
-    UPDATE "accounts"
+    UPDATE "accounts" SET "account_balance" = 10
     WHERE "account_balance" = '0'
     AND "transactions_attempted" = '0';
 
@@ -30,7 +30,7 @@
 
 --8. How do you add a new account?
     INSERT INTO "accounts" ("username")
-    VALUES ("luke");
+    VALUES ('luke');
     -- the user_id is automatically generated and the username is the only value that has NOT NULL, and therefore the only 
     -- value required to create a new account
 
@@ -41,7 +41,7 @@
 
 --## Stretch Goal Questions (word problems)
 --1. Anthony moved to Santa Fe.
-    UPDATE "accounts" SET "city"='Santa Fe'
+    UPDATE "accounts" SET "city"='santa fe'
     WHERE "username" = 'anthony';
 
 --2. Grace closed her account.
@@ -50,7 +50,8 @@
     
 --3. Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
     UPDATE "accounts" SET "account_balance" = "account_balance"-20000
-    WHERE "username" = 'travis';
+    WHERE "username" = 'travis'
+    RETURNING "account_balance";
 
 --4. The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
     ALTER TABLE "accounts"
