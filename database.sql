@@ -31,13 +31,15 @@
 --8. How do you add a new account?
     INSERT INTO "accounts" ("username")
     VALUES ('luke');
-    -- the user_id is automatically generated and the username is the only value that has NOT NULL, and therefore the only 
-    -- value required to create a new account
+    -- the user_id is automatically generated and the username is the only value that has NOT NULL, so
+    -- username is the only value required to create a new account, but not very nice. should probably add as much data as you can
+    INSERT INTO "accounts" ("username", "account_balance", "transactions_attempted", "transactions_completed")
+    VALUE ('luke', 0.00, 0, 0);
 
 --9. The bank is losing money in Miami and Phoenix and needs to unload low transaction customers: How do you delete users that reside in miami OR phoenix and have completed fewer than 5 transactions.
-    SELECT * FROM "accounts"
+    DELETE FROM "accounts"
     WHERE "transactions_completed" < 5
-    AND ("city"='chicago' OR "city"='phoenix');
+    AND ("city"='miami' OR "city"='phoenix');
 
 --## Stretch Goal Questions (word problems)
 --1. Anthony moved to Santa Fe.
@@ -46,6 +48,9 @@
 
 --2. Grace closed her account.
     DELETE FROM "accounts"
+    WHERE "username" = 'grace';
+    -- could also change one of her fields to closed, and zero out her balance. just so we don't lose that data
+    UPDATE "accounts" SET "city" = 'closed', "account_balance" = 0
     WHERE "username" = 'grace';
     
 --3. Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
